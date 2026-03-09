@@ -34,14 +34,24 @@ class _QuizState extends State<Quiz> {
     }
   }
 
+  void restartQuiz() {
+    setState(() {
+      selectedAsnwers = [];
+      activeScreen = 'question-screen';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget screenWindget = StartScreen(switchScreen);
-    if(activeScreen == 'question-screen'){
+    if (activeScreen == 'question-screen') {
       screenWindget = QuestionsScreen(onSelectedelectedAnswer: chooseAnswer);
     }
-    if(activeScreen == 'results-screen'){
-      screenWindget = ResultsScreen(choosenAnswers: selectedAsnwers,);
+    if (activeScreen == 'results-screen') {
+      screenWindget = ResultsScreen(
+        choosenAnswers: selectedAsnwers,
+        onRestart: restartQuiz,
+      );
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,

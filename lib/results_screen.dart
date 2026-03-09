@@ -13,7 +13,7 @@ class ResultsScreen extends StatelessWidget {
   final List<String> choosenAnswers;
   final void Function() onRestart;
 
-  List<Map<String, Object>> getSummery() {
+  List<Map<String, Object>> get summeryData {
     List<Map<String, Object>> summery = [];
     for (var i = 0; i < choosenAnswers.length; i++) {
       summery.add({
@@ -28,11 +28,10 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var summeryData = getSummery();
     var numTotalQuestions = questions.length;
-    var numCorrectQuestions = summeryData.where((data) {
-      return data['correct_answer'] == data['user_answer'];
-    }).length;
+    var numCorrectQuestions = summeryData
+        .where((data) => data['correct_answer'] == data['user_answer'])
+        .length;
 
     return SizedBox(
       width: double.infinity,
